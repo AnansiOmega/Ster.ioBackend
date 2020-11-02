@@ -5,7 +5,7 @@ class SongCollab < ApplicationRecord
 
 
     def self.create_association(song_id , ids)
-        ids.each { |id| SongCollab.find_or_create_by(song_id: song_id, collab_track_id: id ) }
+        ids.each { |id| SongCollab.create(song_id: song_id, collab_track_id: id ) }
     end
 
 end
