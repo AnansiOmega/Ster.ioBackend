@@ -3,9 +3,6 @@ class CollabTrack < ApplicationRecord
     belongs_to :user
     has_many :song_collabs
     has_many :songs, through: :song_collabs
-
-
-
- 
+    
 end
 
