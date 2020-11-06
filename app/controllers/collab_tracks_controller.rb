@@ -10,6 +10,14 @@ class CollabTracksController < ApplicationController
         render json: collabTrack
     end
 
+    def destroy
+        collabTrack =  CollabTrack.find(params[:id])
+        collabTrack.destroy
+        Song.find_empty_songs.destroy_all
+        render json: collabTrack
+    end
+
+
 
 
 
