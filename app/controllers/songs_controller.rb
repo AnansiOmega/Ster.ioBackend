@@ -2,7 +2,12 @@ class SongsController < ApplicationController
 
     def index
         songs = Song.all
-        render json: songs
+        render json: songs, include: '*.*'
+    end
+
+    def show
+        song = Song.find(params[:id])
+        render json: song, include: '*.*'
     end
 
     def create

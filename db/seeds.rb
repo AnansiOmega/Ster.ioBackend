@@ -9,6 +9,7 @@
 CollabTrack.destroy_all
 Song.destroy_all
 SongCollab.destroy_all
+User.destroy_all
 puts 'seedddiiinnnggg'
 # create_table "collab_tracks", force: :cascade do |t|
 #     t.string "instrument"
