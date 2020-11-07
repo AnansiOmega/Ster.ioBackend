@@ -8,4 +8,6 @@ class Song < ApplicationRecord
     def self.find_empty_songs
         Song.includes(:song_collabs).where( :song_collabs => { :song_id => nil } )
     end
+
+    
 end
