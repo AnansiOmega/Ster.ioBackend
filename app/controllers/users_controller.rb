@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(user_params)
+        if user.valid?
         render json: user
+        else
+        render json: { errors: user.errors.full_messages }
+        end
     end
 
     def show
@@ -14,7 +18,11 @@ class UsersController < ApplicationController
     def update
         user = User.find(params[:id])
         user.update(user_params)
-        render json: user, include: '*.*'
+        if user.valid?
+            render json: user, include: '*.*'
+        else
+            render json: { errors: user.errors.full_messages }
+        end
     end
 
 
@@ -22,7 +30,11 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :fname, :lname, :age, :email, :bio, :image)
+        if params[:image] == ''
+            params.permit(:username, :password, :fname, :lname, :age, :email, :bio)
+        else
+            params.permit(:username, :password, :fname, :lname, :age, :email, :bio, :image)
+        end
     end
 
 end

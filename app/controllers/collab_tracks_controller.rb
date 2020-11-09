@@ -6,14 +6,22 @@ class CollabTracksController < ApplicationController
     end
 
     def create
-        collabTrack = CollabTrack.create(collab_params)
-        render json: collabTrack
+        if params[:track] == ''
+            render json: { errors: 'Track cannot be empty'}
+        else
+        collab_track = CollabTrack.create(collab_params)
+        if collab_track.valid?
+            render json: collab_track
+        else
+            render json: { errors: collab_track.errors.full_messages }
+        end
+        end
     end
+
 
     def destroy
         collabTrack =  CollabTrack.find(params[:id])
         collabTrack.destroy
-        Song.find_empty_songs.destroy_all
         render json: collabTrack
     end
 
