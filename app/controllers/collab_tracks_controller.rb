@@ -7,7 +7,7 @@ class CollabTracksController < ApplicationController
 
     def create
         if params[:track] == ''
-            render json: { errors: 'Track cannot be empty'}
+            render json: { errors: ['Track cannot be empty'] }
         else
         collab_track = CollabTrack.create(collab_params)
         if collab_track.valid?

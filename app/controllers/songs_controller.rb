@@ -3,6 +3,7 @@ class SongsController < ApplicationController
     def index
         songs = Song.all
         Song.find_empty_songs.destroy_all
+        Song.find_songs_with_one_track
         render json: songs, include: '*.*'
     end
 
