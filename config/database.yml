@@ -3,24 +3,60 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-#
+# #
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 50 } %>
-  timeout: 5000
-   
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: anansi_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: anansi_test
+
+staging:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  url: <%= ENV['DATABASE_URL'] %>
+# default: &default
+#   adapter: postgresql
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 50 } %>
+#   timeout: 5000
+   
+
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: anansi
+#   pool: 50
+#   username: anansi
+#   password:
+#   timeout: 5000
+  
+
+# # Warning: The database defined as "test" will be erased and
+# # re-generated from your development database when you run "rake".
+# # Do not set this db to the same as development or production.
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: anansi
+#   pool: 50
+#   username: anansi
+#   password:
+#   timeout: 5000
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: anansi
+#   pool: 50
+#   username: anansi
+#   password:
+#   timeout: 5000
