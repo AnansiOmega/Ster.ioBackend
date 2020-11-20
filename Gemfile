@@ -17,8 +17,8 @@ gem 'puma', '~> 4.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'rack-cors'
 gem 'jwt'
+gem "aws-sdk-s3", require: false
 
 
 # Use Active Storage variant
@@ -28,7 +28,8 @@ gem 'jwt'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
